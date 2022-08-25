@@ -16,7 +16,7 @@ Fonte: <a href="https://www.monkeypox.global.health/">Global Health - a Data Sci
 
 ## 🔖 Dataset:
 
-<p style="font-size: 16px">Disponibilizado pela <a href="https://www.monkeypox.global.health/">Global Health</a></p>
+<p style="font-size: 16px">Disponibilizado pela <a href="https://www.monkeypox.global.health/">Global Health</a> e atualizado até 22-ago-2022.</p>
 <p style="font-size: 14px">O projeto ....".</p>
 
 <p style="font-size: 14px"> Dados e informações utilizados no projeto: 
