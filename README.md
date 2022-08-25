@@ -5,9 +5,11 @@
 </p>
 
 <div align="center">
-<img src="assets/img/monkeypoxworld.jpg" />
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/newplot%20(1).png" />
 </div>
-
+<p align="center" style="font-size: 6px">
+Fonte: <a href="https://www.monkeypox.global.health/">Global Health - a Data Science Iniciative</a>
+</p>
 <br>
 
 
