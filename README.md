@@ -5,7 +5,7 @@
 </p>
 
 <div align="center">
-<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/confirmedmonkeypox.png" />
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/confirmedmonkeypox.png" />
 </div>
 <p align="center" style="font-size: 6px">
 Fonte: <a href="https://www.monkeypox.global.health/">Global Health - a Data Science Iniciative</a>
@@ -13,7 +13,7 @@ Fonte: <a href="https://www.monkeypox.global.health/">Global Health - a Data Sci
 <br>
 
 
-## Para usar os scripts do projeto no ambiente do Google Colab<img height="25" src="https://colab.research.google.com/img/colab_favicon_256px.png" />
+## 🛠️ Para usar os scripts do projeto no ambiente do Google Colab<img height="25" src="https://colab.research.google.com/img/colab_favicon_256px.png" />
 
 - Clone o repositório
 ```
@@ -53,25 +53,24 @@ monkeypoxdf.printSchema()
 ```
 
 <div align="center">
-<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/confirmedmonkeypox.png" />
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/monkeypoxschema.png" width="500px" height="500px"/>
 </div>
 
 
-## 📋 Perguntas norteadoras do storytelling em dados:
+## 📋 Perguntas norteadoras de storytelling:
 
-<ul style="list-style: square;">
-    <li>O cálculo ......?</li>
-    <li>O ápice ......?</li>
-    <li>O fator....?</li>
-    <li>Há uma comunicação entre......?</li>
-    <li>Por que as .....?</li>
-    <li>Um ranking .....</li>
-    <li>Como ......?</li>
-    <li>Qual produto.....?</li>
-    <li>Que episódio....?</li>
-    <li>Que núcleo ......?</li>
-    <li>Há um episódio ......?</li>
-</ul>
+<ol style="list-style: square;">
+    <li>Qual o total de casos (%) no mundo por continente?</li>
+    <li>Quais são os 10 países com os maiores índices de contaminação?</li>
+    <li>Qual os históricos de viagens presentes em dados?</li>
+    <li>Há um panorama seguro dados sobre contágio entre homens e mulheres?</li>
+    <li>Quais os 5 principais sintomas apresentados no dataset?
+    <li>Qual é a realidade de casos confirmados no Brasil?</li>
+    <li>Que histórico de viagem foi registrado entre os brasileiros com a varíola dos macacos?</li>
+    <li>Qual é a populaçao de homens e mulheres brasileiros com o vírus?</li>
+    <li>Análise do peso do "null" em três colunas-chave?</li>
+    <li>Qual a média de intervalo entre o período informado entre o histórico de viagem e a confirmação da infecção.
+</ol>
 
 <br>
 <hr/>
@@ -101,17 +100,6 @@ monkeypoxdf.printSchema()
 </div>
 
 <br>
-<br>
-<hr/>
-
-## 🛠️ Tecnologias e ferramentas utilizadas:
-
-<div align="center">
-    
-   <img src="assets/img/techs.png" />
-
-</div>
-
 <br>
 <hr/>
 
