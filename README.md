@@ -13,24 +13,49 @@ Fonte: <a href="https://www.monkeypox.global.health/">Global Health - a Data Sci
 <br>
 
 
+## Para usar os scripts do projeto no ambiente do Google Colab<img height="25" src="https://colab.research.google.com/img/colab_favicon_256px.png" />
 
-## 🔖 Dataset:
+- Clone o repositório
+```
+git clone ......
+```
 
-<p style="font-size: 16px">Disponibilizado pela <a href="https://www.monkeypox.global.health/">Global Health</a> e atualizado até 22-ago-2022.</p>
-<p style="font-size: 14px">O projeto ....".</p>
+- Faça upload do dataset em seu Google Drive
 
-<p style="font-size: 14px"> Dados e informações utilizados no projeto: 
-<ul style="list-style: square;">
-    <li>Banco de dados principal composto de ...
-    <li>Coleta de dados e informações sobre a epidemiologia da varíola dos macacos.</li>
-    <li>Levantamento dos relatórios de análise do dataset utilizado nesse projeto.</li>
-    <li>Coleta informações atuais e relevantes sobre a epidemia de varíola dos macacos</li>    
-</ul>
+- Conectar o Google Drive ao Colab
+```
+from google.colab import drive
+drive.mount('/content/drive/MyDrive/[local_do_arquivo]')
+```
+- Instalar dependências
+```
+!apt-get install openjdk-8-jdk-headless -qq > /dev/null
+!wget -q https://archive.apache.org/dist/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz
+!tar xf spark-2.4.4-bin-hadoop2.7.tgz
+!pip install -q findspark
+```
+- Configurar as variáveis do ambiente
+```
+import os
+os.environ["JAVA_HOME"] = "/usr/lib/jvm/java-8-openjdk-amd64"
+os.environ["SPARK_HOME"] = "/content/spark-2.4.4-bin-hadoop2.7"
 
-<p style="font-size: 14px">Foi utilizado ..... como metodologia ... para ...., com o uso da ferramenta ....</p>
-<p style="font-size: 14px">Para a demonstração ...... foi desenvolvido ....</p>
-<br>
-<hr/>
+import findspark
+findspark.init('spark-2.4.4-bin-hadoop2.7')
+```
+
+## 🔖 Dataset sobre a epidemia do vírus Monkeypox:
+
+<p style="font-size: 16px">Disponibilizado pela <a href="https://www.monkeypox.global.health/">Global Health</a>, o dataset escolhido tem como última atualização a data de 22 de agosto de 2022 e traz informações acerca do atual panorama da epidemia de varíola dos macacos distribuídas em 36 colunas.</p>
+
+```
+monkeypoxdf.printSchema()
+```
+
+<div align="center">
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/confirmedmonkeypox.png" />
+</div>
+
 
 ## 📋 Perguntas norteadoras do storytelling em dados:
 
@@ -50,6 +75,9 @@ Fonte: <a href="https://www.monkeypox.global.health/">Global Health - a Data Sci
 
 <br>
 <hr/>
+
+
+
 
 ## 📉 Algumas análises (scripts, queries e gráficos):
 <div align="center">
