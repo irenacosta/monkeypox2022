@@ -17,7 +17,7 @@ Fonte: <a href="https://www.monkeypox.global.health/">Global Health - a Data Sci
 
 - Clone o repositório
 ```
-git clone ......
+git clone https://github.com/irenacosta/monkeypoxPySpark.git
 ```
 
 - Faça upload do dataset em seu Google Drive
@@ -46,7 +46,7 @@ findspark.init('spark-2.4.4-bin-hadoop2.7')
 
 ## 🔖 Dataset sobre a epidemia do vírus Monkeypox:
 
-<p style="font-size: 16px">Disponibilizado pela <a href="https://www.monkeypox.global.health/">Global Health</a>, o dataset escolhido tem como última atualização a data de 22 de agosto de 2022 e traz informações acerca do atual panorama da epidemia de varíola dos macacos distribuídas em 36 colunas.</p>
+<p style="font-size: 16px">Disponibilizado pela <a href="https://www.monkeypox.global.health/">Global Health</a>, o dataset escolhido tem como última atualização a data de 22 de agosto de 2022 e traz informações acerca do atual panorama da epidemia de varíola dos macacos distribuídas em 36 colunas 2 49.289 linhas.</p>
 
 ```
 monkeypoxdf.printSchema()
@@ -56,11 +56,17 @@ monkeypoxdf.printSchema()
 <img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/monkeypoxschema.png" width="500px" height="500px"/>
 </div>
 
+```
+monkeypoxdf.count()
+```
+<p> 49289 </p>
+
+
 
 ## 📋 Perguntas norteadoras de storytelling:
 
 <ol style="list-style: square;">
-    <li>Qual o total de casos (%) no mundo por continente?</li>
+    <li>Qual a comparaçao de total de casos no mundo em períodos de 15 em 15 dias?</li>
     <li>Quais são os 10 países com os maiores índices de contaminação?</li>
     <li>Qual os históricos de viagens presentes em dados?</li>
     <li>Há um panorama seguro dados sobre contágio entre homens e mulheres?</li>
@@ -69,7 +75,7 @@ monkeypoxdf.printSchema()
     <li>Que histórico de viagem foi registrado entre os brasileiros com a varíola dos macacos?</li>
     <li>Qual é a populaçao de homens e mulheres brasileiros com o vírus?</li>
     <li>Análise do peso do "null" em três colunas-chave?</li>
-    <li>Qual a média de intervalo entre o período informado entre o histórico de viagem e a confirmação da infecção.
+    <li>Qual a média de intervalo entre o período informado do histórico de viagem e a confirmação da infecção.
 </ol>
 
 <br>
