@@ -63,7 +63,7 @@ monkeypoxdf.count()
 
 
 
-## 📋 Perguntas norteadoras de storytelling:
+## 📋 Perguntas norteadoras de análises exploratórias do dataset/dataframe do Monkeypox (varíola dos macacos):
 
 <ol style="list-style: square;">
     <li>Qual a comparaçao de total de casos no mundo em períodos de 15 em 15 dias?</li>
@@ -84,17 +84,40 @@ monkeypoxdf.count()
 
 
 
-## 📉 Algumas análises (scripts, queries e gráficos):
+## 📉 Algumas análises explanatórias e storytellings:
+
+<p align="center"> Ranking com os 10 países que mais apresentam casos confirmados (ordem decrescente):</p>
+
+
+```
+newmonkeypoxdf_total = newmonkeypoxdf.groupBy("Pais").agg(count("Pais").alias("total_casos")).orderBy(col("total_casos").desc()).show(10)
+```
+
 <div align="center">
-  <img src="assets/img/monkeypox1.png" />
+  <img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/ranking10paises.png" width="300px" height="300px"/>
+</div>
+</div>
+<br>
+
+<p align="center"> Plotagem gráfica do ranking com os 10 países que mais apresentam casos confirmados (ordem alfabética):</p>
+
+```
+px.bar(x=["Alemanha", "Brasil", "Canada", "Congo", "Espanha", "Estados Unidos", "França", "Holanda", "Inglaterra", "Peru", "Portugal"], y=[3350, 4186, 1298, 2380, 6470, 16759, 2899, 1090, 3191, 1210, 810])
+```
+
+<div align="center">
+  <img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/rankingalfabetica.png" />
+</div>
+<br>
+
+<p align="center"> Contagem de valores vazios nas colunas do Dataframe/dataset</p>
+</div>
+<div align="center">
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/newmonkeypox_Null.png" width="1000px"height="80px"/>
 </div>
 
 <div align="center">
-<img src="assets/img/monkeypox2.png" />
-</div>
-
-<div align="center">
-<img src="assets/img/monkeypox3.png" />
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/valorevazioscolunas.png" width="1500px" height="500px" />
 </div>
 
 <div align="center">
