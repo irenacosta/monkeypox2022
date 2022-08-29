@@ -111,7 +111,12 @@ px.bar(x=["Alemanha", "Brasil", "Canada", "Congo", "Espanha", "Estados Unidos", 
 <br>
 
 <p align="center"> Contagem de valores vazios nas colunas do Dataframe/dataset</p>
-</div>
+
+```
+from pyspark.sql.functions import col, isnan,when, count
+newmonkeypoxdf_Null=["Status", "Localizacao", "Cidade", "Pais", "Cod_ISO3","Idade", "Sexo", "Sintomas","Hospitalizado","Em_isolamento","Detectado","Comentarios_contato","Identidade_Contato","Cidade_contato", "Viajou", "Data_viagem","Data_inicio_viagem","Localidade_visitada","Pais_visitado","Genoma_virus", "Metodo_confirmacao", "Fonte", "Fonte_II", "Fonte_III", "Fonte_IV", "Fonte_V", "Fonte_VI", "Fonte_VII"]
+newmonkeypoxdf1.select([count(when(isnan(c) | col(c).isNull(), c)).alias(c) for c in newmonkeypoxdf_Null]).show()
+```
 <div align="center">
 <img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/newmonkeypox_Null.png" width="1000px"height="80px"/>
 </div>
