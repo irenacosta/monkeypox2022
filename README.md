@@ -120,13 +120,19 @@ newmonkeypoxdf1.select([count(when(isnan(c) | col(c).isNull(), c)).alias(c) for 
 <div align="center">
 <img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/newmonkeypox_Null.png" width="1000px"height="80px"/>
 </div>
-
+<br>
+<p align="center"> Gráficos Plotly em linha e barra mostrando o nível de equiparação dos valores nulos como atributo das colunas "Idade" e "Sexo" com outras colunas</p>
 <div align="center">
 <img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/valorevazioscolunas.png" width="1500px" height="500px" />
 </div>
 
+```
+px.bar(x=["Status","Localizacao","Cidade","Pais","Cod_ISO3","Idade","Sexo","Sintomas","Hospitalizado","Em_isolamento","Detectado","Comentarios_contato","Identidade_Contato","Cidade_Contato","Viajou","Data_viagem","Data_inicio_viagem","Localidade_visitada","Pais_visitado","Genoma_virus", "Metodo_confirmacao", "Fonte", "Fonte_II", "Fonte_III", "Fonte_IV", "Fonte_V", "Fonte_VI", "Fonte_VII"], y=[44,13332,48016,44,44,46542,47057,49086,48986,48864,49199,49198,49262,49283,48946,49252,49279,49182,49194,49265,49190,44,42323,48451,49236,49289,49289,49289])
+````
+
+
 <div align="center">
-<img src="assets/img/monkeypox4.png" />
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/graficobarra_monkeypoxnulos.png" />
 </div>
 
 <div align="center">
