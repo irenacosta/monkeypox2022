@@ -1,7 +1,7 @@
 # Projeto: "A epidemia de Monkeypox em 2022 e os reflexos dessa história em dados"
 <br>
 <p align="center">
-<img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20ANDAMENTO&color=GREEN&style=for-the-badge"/>
+<img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20REFORMULACAO&color=GREEN&style=for-the-badge"/>
 </p>
 
 <div align="center">
@@ -46,7 +46,7 @@ findspark.init('spark-2.4.4-bin-hadoop2.7')
 
 ## 🔖 Dataset sobre a epidemia do vírus Monkeypox:
 
-<p style="font-size: 16px">Disponibilizado pela <a href="https://www.monkeypox.global.health/">Global Health</a>, o dataset escolhido tem como última atualização a data de 22 de agosto de 2022 e traz informações acerca do atual panorama da epidemia de varíola dos macacos distribuídas em 36 colunas 2 49.289 linhas.</p>
+<p style="font-size: 16px">Disponibilizado pela <a href="https://www.monkeypox.global.health/">Global Health</a>, o dataset escolhido tem como última atualização a data de 01 de setembro de 2022.</p>
 
 ```
 monkeypoxdf.printSchema()
@@ -74,7 +74,7 @@ monkeypoxdf.count()
     <li>Qual é a realidade de casos confirmados no Brasil?</li>
     <li>Que histórico de viagem foi registrado entre os brasileiros com a varíola dos macacos?</li>
     <li>Qual é a populaçao de homens e mulheres brasileiros com o vírus?</li>
-    <li>Análise do peso do "null" em três colunas-chave?</li>
+    <li>Análise do peso da ausência de dados em três colunas-chave?</li>
     <li>Qual a média de intervalo entre o período informado do histórico de viagem e a confirmação da infecção.
 </ol>
 
@@ -82,33 +82,8 @@ monkeypoxdf.count()
 <hr/>
 
 
-
-
 ## 📉 Algumas análises explanatórias e storytellings:
 
-<p align="center"> Ranking com os 10 países que mais apresentam casos confirmados (ordem decrescente):</p>
-
-
-```
-newmonkeypoxdf_total = newmonkeypoxdf.groupBy("Pais").agg(count("Pais").alias("total_casos")).orderBy(col("total_casos").desc()).show(10)
-```
-
-<div align="center">
-  <img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/ranking10paises.png" width="300px" height="300px"/>
-</div>
-</div>
-<br>
-
-<p align="center"> Plotagem gráfica do ranking com os 10 países que mais apresentam casos confirmados (ordem alfabética):</p>
-
-```
-px.bar(x=["Alemanha", "Brasil", "Canada", "Congo", "Espanha", "Estados Unidos", "França", "Holanda", "Inglaterra", "Peru", "Portugal"], y=[3350, 4186, 1298, 2380, 6470, 16759, 2899, 1090, 3191, 1210, 810])
-```
-
-<div align="center">
-  <img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/rankingalfabetica.png" />
-</div>
-<br>
 
 <p align="center"> Contagem de valores vazios nas colunas do Dataframe/dataset</p>
 
@@ -121,7 +96,7 @@ newmonkeypoxdf1.select([count(when(isnan(c) | col(c).isNull(), c)).alias(c) for 
 <img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/newmonkeypox_Null.png" width="1000px"height="80px"/>
 </div>
 <br>
-<p align="center"> Gráficos Plotly em linha e barra mostrando o nível de equiparação dos valores nulos como atributo das colunas "Idade" e "Sexo" com outras colunas</p>
+<p align="center"> Gráficos demonstrando a ausência de dados nas colunas e o nível de equiparação dos valores nulos como atributo das colunas "Idade" e "Sexo" com outras colunas</p>
 <div align="center">
 <img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/valorevazioscolunas.png" width="1500px" height="500px" />
 </div>
@@ -134,11 +109,6 @@ px.bar(x=["Status","Localizacao","Cidade","Pais","Cod_ISO3","Idade","Sexo","Sint
 <div align="center">
 <img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/graficobarra_monkeypoxnulos.png" />
 </div>
-
-<div align="center">
-<img src="assets/img/monkeypox5.png" />
-</div>
-
 <br>
 <br>
 <hr/>
