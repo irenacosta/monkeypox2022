@@ -13,35 +13,19 @@ Fonte: <a href="https://www.monkeypox.global.health/">Global Health - a Data Sci
 <br>
 
 
-## 🛠️ Para usar os scripts do projeto no ambiente do Google Colab<img height="25" src="https://colab.research.google.com/img/colab_favicon_256px.png" />
+## 🛠️ Para contribuir com o projeto<img height="25" src="https://colab.research.google.com/img/colab_favicon_256px.png" />
+
+<p align="center">
+<img src="http://img.shields.io/static/v1?label=SCRIPTS&message=EM%20ATUALIZACAO&color=YELLOW&style=for-the-badge"/>
+</p>
+<p align="center">
+<img src="http://img.shields.io/static/v1?label=QUERIES&message=EM%20DESENVOLVIMENTO&color=YELLOW&style=for-the-badge"/>
+</p>
+
 
 - Clone o repositório
 ```
 git clone https://github.com/irenacosta/monkeypoxPySpark.git
-```
-
-- Faça upload do dataset em seu Google Drive
-
-- Conectar o Google Drive ao Colab
-```
-from google.colab import drive
-drive.mount('/content/drive/MyDrive/[local_do_arquivo]')
-```
-- Instalar dependências
-```
-!apt-get install openjdk-8-jdk-headless -qq > /dev/null
-!wget -q https://archive.apache.org/dist/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz
-!tar xf spark-2.4.4-bin-hadoop2.7.tgz
-!pip install -q findspark
-```
-- Configurar as variáveis do ambiente
-```
-import os
-os.environ["JAVA_HOME"] = "/usr/lib/jvm/java-8-openjdk-amd64"
-os.environ["SPARK_HOME"] = "/content/spark-2.4.4-bin-hadoop2.7"
-
-import findspark
-findspark.init('spark-2.4.4-bin-hadoop2.7')
 ```
 
 ## 🔖 Dataset sobre a epidemia do vírus Monkeypox:
