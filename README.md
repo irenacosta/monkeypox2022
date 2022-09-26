@@ -1,4 +1,4 @@
-# Projeto: "A epidemia de Monkeypox em 2022 e os reflexos dessa história em dados"
+# Projeto: "A epidemia de Monkeypox em 2022 e suas possíveis narrativas em dados"
 <br>
 <p align="center">
 <img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20REFORMULACAO&color=GREEN&style=for-the-badge"/>
