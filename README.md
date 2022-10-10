@@ -30,7 +30,7 @@ git clone https://github.com/irenacosta/monkeypoxPySpark.git
 
 ## 🔖 Dataset sobre a epidemia do vírus Monkeypox:
 
-<p style="font-size: 16px">Disponibilizado pela <a href="https://www.monkeypox.global.health/">Global Health</a>, o dataset escolhido tem como última atualização a data de 01 de setembro de 2022.</p>
+<p style="font-size: 16px">Disponibilizado pela <a href="https://www.monkeypox.global.health/">Global Health</a>, o dataset escolhido tem como última atualização a data de 23 de setembro de 2022. Após essa data, a organização escolheu não mais seguir com o projeto de compilação dos dados gerais enviados pelos países e segue agora apenas divulgando o número de casos registrados nos países. </p>
 
 ```
 monkeypoxdf.printSchema()
@@ -41,61 +41,110 @@ monkeypoxdf.printSchema()
 </div>
 
 ```
-monkeypoxdf.count()
+col = len(monkeypoxdf.columns)
+col
 ```
-<p> 49289 </p>
 
+```
+row = monkeypoxdf.count()
+row
+```
 
+```
+print(f'A dimensáo do Dataframe é: {(row,col)}')
+print(f'O Dataframe possui o total de {row} linhas e {col} colunas')
+```
+<p> A dimensáo do Dataframe é: (69639, 36) </p>
+<p> O Dataframe possui o total de 69639 linhas e 36 colunas </p>
 
-## 📋 Perguntas norteadoras de análises exploratórias do dataset/dataframe do Monkeypox (varíola dos macacos):
+## 📋 Panorama geral do estado da arte das principais colunas dataframe (Status, País, Idade, Sexo e Sintomas):
 
-<ol style="list-style: square;">
-    <li>Qual a comparaçao de total de casos no mundo em períodos de 15 em 15 dias?</li>
-    <li>Quais são os 10 países com os maiores índices de contaminação?</li>
-    <li>Qual os históricos de viagens presentes em dados?</li>
-    <li>Há um panorama seguro dados sobre contágio entre homens e mulheres?</li>
-    <li>Quais os 5 principais sintomas apresentados no dataset?
-    <li>Qual é a realidade de casos confirmados no Brasil?</li>
-    <li>Que histórico de viagem foi registrado entre os brasileiros com a varíola dos macacos?</li>
-    <li>Qual é a populaçao de homens e mulheres brasileiros com o vírus?</li>
-    <li>Análise do peso da ausência de dados em três colunas-chave?</li>
-    <li>Qual a média de intervalo entre o período informado do histórico de viagem e a confirmação da infecção.
-</ol>
-
+```
+monkeypoxdf.agg(
+    f.count('Status').alias('Status_count'),
+    f.countDistinct('Status').alias('Status_distinct'),
+    f.count('Country').alias('Country_count'),
+    f.countDistinct('Country').alias('Country_distinct'),
+    f.count('Age').alias('Age_count'),
+    f.countDistinct('Age').alias('Age_distinct'), 
+    f.count('Gender').alias('Gender_count'),
+    f.countDistinct('Gender').alias('Gender_distinct'),
+    f.count('Symptoms').alias('Symptoms_count'),
+    f.countDistinct('Symptoms').alias('Symptoms_distinct')
+).show()
+```
+```
+monkeypoxdf.groupBy("Status").agg(countDistinct('Country')) \
+    .show(truncate=False)
+```
+```
+monkeypoxdf.groupBy("Status").agg(countDistinct('Age')) \
+    .show(truncate=False)
+```
+```
+monkeypoxdf.groupBy("Status").agg(countDistinct('Gender')) \
+    .show(truncate=False)
+```
 <br>
 <hr/>
 
 
-## 📉 Algumas análises explanatórias e storytellings:
-
-
-<p align="center"> Contagem de valores vazios nas colunas do Dataframe/dataset</p>
+## 📉 Alguns scripts de análises explanatórias:
 
 ```
-from pyspark.sql.functions import col, isnan,when, count
-newmonkeypoxdf_Null=["Status", "Localizacao", "Cidade", "Pais", "Cod_ISO3","Idade", "Sexo", "Sintomas","Hospitalizado","Em_isolamento","Detectado","Comentarios_contato","Identidade_Contato","Cidade_contato", "Viajou", "Data_viagem","Data_inicio_viagem","Localidade_visitada","Pais_visitado","Genoma_virus", "Metodo_confirmacao", "Fonte", "Fonte_II", "Fonte_III", "Fonte_IV", "Fonte_V", "Fonte_VI", "Fonte_VII"]
-newmonkeypoxdf1.select([count(when(isnan(c) | col(c).isNull(), c)).alias(c) for c in newmonkeypoxdf_Null]).show()
+from pyspark.sql.functions import datediff,col
+ 
+monkeypoxDatedif = monkeypoxdf.withColumn("Diferenca_em_dias", datediff(col("Date_confirmation"),col("Date_onset"))) \
+    .drop("Symptoms","Hospitalised (Y/N/NA)","Isolated (Y/N/NA)","Travel_history (Y/N/NA)","Travel_history_location", \
+          "Travel_history_country","Date_hospitalisation","Date_isolation","Outcome","Contact_comment", \
+          "Contact_ID","Contact_location","Travel_history_entry","Travel_history_start", \
+          "Genomics_Metadata","Confirmation_method","Source","Source_II","Source_III", \
+          "Source_IV","Source_V","Source_VI","Source_VII","Date_entry","Date_death","Date_last_modified").show(truncate=False)
+monkeypoxDatedif
 ```
-<div align="center">
-<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/newmonkeypox_Null.png" width="1000px"height="80px"/>
-</div>
-<br>
-<p align="center"> Gráficos demonstrando a ausência de dados nas colunas e o nível de equiparação dos valores nulos como atributo das colunas "Idade" e "Sexo" com outras colunas</p>
-<div align="center">
-<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/valorevazioscolunas.png" width="1500px" height="500px" />
-</div>
 
 ```
-px.bar(x=["Status","Localizacao","Cidade","Pais","Cod_ISO3","Idade","Sexo","Sintomas","Hospitalizado","Em_isolamento","Detectado","Comentarios_contato","Identidade_Contato","Cidade_Contato","Viajou","Data_viagem","Data_inicio_viagem","Localidade_visitada","Pais_visitado","Genoma_virus", "Metodo_confirmacao", "Fonte", "Fonte_II", "Fonte_III", "Fonte_IV", "Fonte_V", "Fonte_VI", "Fonte_VII"], y=[44,13332,48016,44,44,46542,47057,49086,48986,48864,49199,49198,49262,49283,48946,49252,49279,49182,49194,49265,49190,44,42323,48451,49236,49289,49289,49289])
-````
+monkeypoxdf.createOrReplaceTempView("MonkeypoxRank1")
+spark.sql("select Country, count(Status) as count_Status from MonkeypoxRank1 " +
+          "group by Country having count_Status >= 1 " + 
+          "order by count_Status desc").show(20)
+```
+```
+monkeypoxFaixa = spark.createDataFrame([("Crianças","0 a 12 anos"),("Adolescentes","13 a 19 anos"),
+                 ("Adultos","20 a 95 anos")],["Classificação","Faixa etária"])
+monkeypoxFaixa.show()
+
+monkeypoxdf.createOrReplaceTempView("MonkeypoxAgeRank")
+spark.sql("select Age, count(Country) as count_Age from MonkeypoxAgeRank " +
+          "group by Age having count_Age >= 1 " + 
+          "order by count_Age desc").show(20)
+```
+<p font-size: 10px> Faixa etária adotada seguindo a prática de classificaçao etária em estudos científicos com dados de doenças x idade em datasets que apresentam inconsistência na catalogação dos registros da idade de pacientes </p>
+
+```
+monkeypoxAgedf=spark.createDataFrame([("1","null","null",66574),("2","20-69","adulto",616),("3","15-64",
+                "indeterminado",275),("4","15-64","indeterminado",275),("5","20-59","adulto",244),
+                ("6","15-74","indeterminado",240),("7","20-64","adulto",225), ("8","15-84","indeterminado",187),
+                ("9","15-69","indeterminado",184),("10","30-34","adulto",75),("11","20-44","adulto",60),
+                ("12","25-29","adulto",58),("13","20-99","adulto",57),("14","0-69","indeterminado",54),
+                ("15","35-39","adulto",46),("16","18-61","indeterminado",44),("17","40-44","adulto",42),
+                ("18","1-69","indeterminado",37),("19","19-59","indeterminado",36),("20","0-59","indeterminado",34),
+                ("21","23-50","adulto",32)],["ID","Faixa_etaria","Classificacao","Quantidade"])
+monkeypoxAgedf.show(20)
+```
+```
+newmonkeypoxdf_Null1=["Status", "Localizacao", "Cidade", "Pais", "Cod_ISO3","Idade", "Sexo", "Sintomas","Hospitalizado","Viajou"]
+newmonkeypoxdf1.select([count(when(isnan(c) | col(c).isNull(), c)).alias(c) for c in newmonkeypoxdf_Null1]).show()
+```
 
 
-<div align="center">
-<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/graficobarra_monkeypoxnulos.png" />
-</div>
 <br>
 <br>
 <hr/>
+
+## 📋 Principais insights:
+
+
 
 ## ⚖️Licença
 MIT License
