@@ -224,6 +224,7 @@ monkeypoxSymptoms3=spark.createDataFrame([("1","None","None","69375"),("2","geni
                     ["ID","Sintoma","Grupo_Sintoma","Total_Grupo_Sintoma"])
 monkeypoxSymptoms3.show()
 ```
+```
 colocar os dois gráficos aqui
 ```
 
