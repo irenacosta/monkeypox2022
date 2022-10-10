@@ -1,4 +1,4 @@
-# Projeto: "Insights sobre o banco de dados público da Monkeypox"
+# Projeto: "Dataset epidemia de Monkeypox 2022" 
 <br>
 <p align="center">
 <img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20ATUALIZACAO&color=GREEN&style=for-the-badge"/>
@@ -48,14 +48,13 @@ row
 ```
 
 ```
-print(f'A dimensáo do Dataframe é: {(row,col)}')
+print(f'A dimensão do Dataframe é: {(row,col)}')
 print(f'O Dataframe possui o total de {row} linhas e {col} colunas')
 ```
-<p> A dimensáo do Dataframe é: (69639, 36) </p>
+<p> A dimensão do Dataframe é: (69639, 36) </p>
 <p> O Dataframe possui o total de 69639 linhas e 36 colunas </p>
 
 ## 📋 Panorama geral do estado da arte das principais colunas dataframe (Status, País, Idade, Sexo e Sintomas):
-
 ```
 monkeypoxdf.agg(
     f.count('Status').alias('Status_count'),
@@ -70,6 +69,11 @@ monkeypoxdf.agg(
     f.countDistinct('Symptoms').alias('Symptoms_distinct')
 ).show()
 ```
+
+<div align="center">
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/panorama%20geral%20colunas.png"/>
+</div>
+
 ```
 monkeypoxdf.groupBy("Status").agg(countDistinct('Country')) \
     .show(truncate=False)
@@ -148,16 +152,37 @@ spark.sql("select Age, count(Country) as count_Age from MonkeypoxAgeRank " +
 ## 📋 Principais insights:
 
 - O dataset traz uma porcentagem muito elevada de atributos nulos nas principais colunas;
-- Optou-se por incluir a característica presença do vazio no processo de análise das informações contidas em colunas-chave do dataframe.
+- Optou-se por incluir a característica presença do vazio no processo de análise das informações contidas em colunas-chave do dataframe;
+- Não se pode afirmar se a população de casos do vírus acontece mais entre homens ou mulheres pois 96,4% da coluna Gender apresenta-se com informação vazia.
+<div align="center">
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/gra%CC%81fico%20pizza%20sexo%20-%20todos.png" />
+</div>
 
 #### 📋 Principal insight do vazio nas colunas:
 ```
 newmonkeypoxdf_Null1=["Status", "Localizacao", "Cidade", "Pais", "Cod_ISO3","Idade", "Sexo", "Sintomas","Hospitalizado","Viajou"]
 newmonkeypoxdf1.select([count(when(isnan(c) | col(c).isNull(), c)).alias(c) for c in newmonkeypoxdf_Null1]).show()
 ```
-```
-colocar gráfico aqui
-```
+
+<p align="center" style="font-size: 8px">
+Gráfico em linha mostrando o nível de altura do vazio em todas as colunas do dataframe:
+</p>
+<div align="center">
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/gra%CC%81fica%20linha%20peso%20do%20vazio%20colunas%20-%20todas.png" />
+</div>
+<p align="center" style="font-size: 8px">
+Gráfico em barra mostrando a altura do vazio em todas as colunas do dataframe:
+</p>
+<div align="center">
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/gra%CC%81fico%20barra%20peso%20do%20vazio%20colunas%20-%20todas.png" />
+</div>
+<p align="center" style="font-size: 8px">
+Gráfico em linha mostrando o nível de altura das principais colunas do dataframe:
+</p>
+<div align="center">
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/gra%CC%81fica%20linha%20peso%20vazio%20colunas%20-%20principais.png" />
+</div>
+
 #### 📋 Principal insight da coluna Age:
 ```
 monkeypoxAgedf1 = [{"id":"1","Faixa_etaria":"null","Classificacao":"null","Quantidade":66574},
@@ -186,9 +211,13 @@ monkeypoxAgedf1 = spark.createDataFrame(monkeypoxAgedf1)
 
 monkeypoxAgedf1.groupBy('Classificacao').sum('Quantidade').show(20)
 ```
-```
-colocar gráfico aqui
-```
+<div align="center">
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/gra%CC%81fico%20pizza%20-%20faixa%20eta%CC%81ria.png"/>
+</div>
+
+<div align="center">
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/gra%CC%81fico%20pizza%20faixa%20eta%CC%81ria%20-%20adulto%20e%20indeterminado.png"/>
+</div>
 
 #### 📋 Principal insight da coluna Gender:
 ```
@@ -205,9 +234,13 @@ spark.sql(
 monkeypoxGender5=spark.createDataFrame([("67120","2442","33")],["Null","male","female"])
 monkeypoxGender5.show()
 ```
-```
-colocar gráfico aqui
-```
+<div align="center">
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/gra%CC%81fico%20pizza%20sexo%20-%20todos.png"/>
+</div>
+<div align="center">
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/gra%CC%81fico%20pizza%20sexo%20-%20sem%20null.png"/>
+</div>
+
 #### 📋 Principal insight da coluna Symptoms:
 ```
 monkeypoxdf.createOrReplaceTempView("MonkeypoxRank4")
@@ -215,6 +248,13 @@ spark.sql("select Symptoms, count(Country) as count_Country from MonkeypoxRank4 
           "group by Symptoms having count_Country >= 1 " + 
           "order by count_Country desc").show(10)
 ```
+<div align="center">
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/gra%CC%81fico%20pizza%20sintomas%20-%20todos%20os%2010%20mais.png"/>
+</div>
+<div align="center">
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/gra%CC%81fico%20pizza%20sintomas%20-%2010%20mais%20sem%20null.png"/>
+</div>
+
 ```
 monkeypoxSymptoms3=spark.createDataFrame([("1","None","None","69375"),("2","genital ulcer lesions","Genitália","30"),
                     ("3","oral ulcer","Boca","17"),("4","genital ulcers","Genitália","17"),("5","fever","Febre","17"),
@@ -224,10 +264,13 @@ monkeypoxSymptoms3=spark.createDataFrame([("1","None","None","69375"),("2","geni
                     ["ID","Sintoma","Grupo_Sintoma","Total_Grupo_Sintoma"])
 monkeypoxSymptoms3.show()
 ```
-```
-colocar os dois gráficos aqui
-```
 
+<div align="center">
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/gra%CC%81fico%20pizza%20grupo%20sintomas%20-%20todos.png"/>
+</div>
+<div align="center">
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/gra%CC%81fico%20pizza%20grupo%20sintomas%20-%20sem%20null.png"/>
+</div>
 ## ⚖️Licença
 MIT License
 
