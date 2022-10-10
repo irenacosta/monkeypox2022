@@ -89,7 +89,34 @@ monkeypoxdf.groupBy("Status").agg(countDistinct('Gender')) \
 <br>
 <hr/>
 
-## 📋 Pivotando colunas afins:
+## 📋 Pivotando colunas essenciais de storytelling:
+
+```
+monkeypoxPivotSA = monkeypoxdf.groupBy("Symptoms").pivot("Age").count().show()
+monkeypoxPivotSA
+```
+
+<div align="center">
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/pivot%20symptoms%20age.png"/>
+</div>
+
+```
+monkeypoxPivotSG = monkeypoxdf.groupBy("Symptoms").pivot("Gender").count().show()
+monkeypoxPivotSG
+```
+
+<div align="center">
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/pivot%20symtoms%20gender.png" width="500px" height="500px"/>
+</div>
+
+```
+monkeypoxPivot = monkeypoxdf.groupBy("Country").pivot("Gender").count().show()
+monkeypoxPivot
+```
+<div align="center">
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/pivot%20country%20gender.png" width="500px" height="500px"/>
+</div>
+
 ```
 df2 = monkeypoxdf.withColumn("Sexo+Idade",create_map(
         lit("Gender"),col("Gender"),
@@ -112,6 +139,10 @@ df2 = monkeypoxdf.withColumn("Sexo+Idade",create_map(
 df2.printSchema()
 df2.show(truncate=False)
 ```
+
+<div align="center">
+<img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/pivot%20colunas%20afins.png" />
+</div>
 
 ## 📉 Alguns scripts de análises explanatórias:
 
