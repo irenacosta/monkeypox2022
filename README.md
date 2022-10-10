@@ -1,7 +1,7 @@
 # Projeto: "Dataset epidemia de Monkeypox 2022" 
 <br>
 <p align="center">
-<img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20ATUALIZACAO&color=GREEN&style=for-the-badge"/>
+<img src="http://img.shields.io/static/v1?label=STATUS&message=CONCLUIDO&color=GREEN&style=for-the-badge"/>
 </p>
 
 <div align="center">
@@ -16,7 +16,7 @@ Fonte: <a href="https://www.monkeypox.global.health/">Global Health - a Data Sci
 ## 🛠️ Para contribuir com o projeto<img height="25" src="https://colab.research.google.com/img/colab_favicon_256px.png" />
 
 <p align="center">
-<img src="http://img.shields.io/static/v1?label=SCRIPTS&message=FINALIZADO&color=YELLOW&style=for-the-badge"/>
+<img src="http://img.shields.io/static/v1?label=SCRIPT&message=FINALIZADO&color=YELLOW&style=for-the-badge"/>
 </p>
 
 
