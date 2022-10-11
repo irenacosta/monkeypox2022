@@ -1,7 +1,9 @@
 # Projeto: "Dataset epidemia de Monkeypox 2022" 
 <br>
-<p align="center">
-<img src="http://img.shields.io/static/v1?label=STATUS&message=CONCLUIDO&color=GREEN&style=for-the-badge"/>
+<p align="center"> <img src="http://img.shields.io/static/v1?label=STATUS&message=CONCLUIDO&color=GREEN&style=for-the-badge"/>
+</p>
+<br>
+<p align="center"> <img src="https://colab.research.google.com/assets/colab-badge.svg"/> <img src="https://img.shields.io/badge/Made%20with-PySpark-1f425f.svg">
 </p>
 
 <div align="center">
@@ -14,10 +16,6 @@ Fonte: <a href="https://www.monkeypox.global.health/">Global Health - a Data Sci
 
 
 ## 🛠️ Para contribuir com o projeto<img height="25" src="https://colab.research.google.com/img/colab_favicon_256px.png" />
-
-<p align="center">
-<img src="http://img.shields.io/static/v1?label=SCRIPT&message=FINALIZADO&color=YELLOW&style=for-the-badge"/>
-</p>
 
 
 - Clone o repositório
@@ -302,6 +300,8 @@ monkeypoxSymptoms3.show()
 <div align="center">
 <img src="https://github.com/irenacosta/monkeypoxPySpark/blob/main/img/gra%CC%81fico%20pizza%20grupo%20sintomas%20-%20sem%20null.png"/>
 </div>
+<hr>
+
 ## ⚖️Licença
 MIT License
 
