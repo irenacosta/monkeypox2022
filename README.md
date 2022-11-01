@@ -25,7 +25,7 @@ git clone https://github.com/irenacosta/monkeypoxPySpark.git
 
 ## 🔖 Dataset sobre a epidemia do vírus Monkeypox:
 
-<p style="font-size: 16px">Disponibilizado pela <a href="https://github.com/globaldothealth/monkeypox">Global Health</a>, o dataset escolhido tem como última atualização a data de 23 de setembro de 2022. Após essa data, a organização escolheu não mais seguir com o projeto de compilação dos dados gerais enviados pelos países e segue agora apenas divulgando o número de casos registrados nos países. </p>
+<p style="font-size: 16px">Disponibilizado pela <a href="https://github.com/globaldothealth/monkeypox">Global Health</a>, o dataset foi atualizado até 22 de setembro de 2022, data em que o projeto de tabular com detalhes dados mundiais da epidemia de Monkeypox completou 100 dias e foi paralisado.</p>
 
 ```
 monkeypoxdf.printSchema()
