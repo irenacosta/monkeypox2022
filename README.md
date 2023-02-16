@@ -1,6 +1,6 @@
 # Projeto: "Dataset epidemia de Monkeypox 2022" 
 <br>
-<p align="center"><img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/></p>
+<p align="center"><img src="http://img.shields.io/static/v1?label=STATUS&message=ENCERRADO&color=GREEN&style=for-the-badge"/></p>
 </p>
 <br>
 <p align="center"> <img src="https://colab.research.google.com/assets/colab-badge.svg"/> <img src="https://img.shields.io/badge/Made%20with-PySpark-1f425f.svg">
